@@ -21,8 +21,6 @@ int main(int argc, char* argv[])
 
 
   HuffmanTree htree;
-  cout << "efe\n";
-  cout << htree.count;
   if (argc == 1) {
     
     /*
@@ -38,24 +36,19 @@ int main(int argc, char* argv[])
   FileHandle file(argv[1]);
   FILE *fp = file.fp;
   
-  cout << htree.tree.size() << "\n";
   file.readFile(numbers);
-  cout << "tata " << htree.count;
   htree.populateTree(numbers);
 
 
  
-  //cout << htree.count << "\n";
 
   /*
    * Should be using a priority queue for min heap to simulate the algorithm.
    * Instead, using STL sort()
    * */
 
-  cout << "DA!";
   sort(htree.tree.begin(), htree.tree.begin() + htree.count, comparator0);
   htree.compress();
-  cout << "bines\n";
 
   FILE *compress_fp = NULL;
   string compressed_file = argv[1];

@@ -89,7 +89,7 @@ void FileHandle::writeFile(FILE *fp, FILE *original, std::string file, int pasts
     total_bits += len + 16;
 
     ptr = &node_ptr->bit[0];
-    while(ptr) {
+    while(*ptr) {
       if (curr_bit_count == 8) {
         fwrite(&curr_byte, 1, 1, fp);
         curr_bit_count = 0;
@@ -119,7 +119,7 @@ void FileHandle::writeFile(FILE *fp, FILE *original, std::string file, int pasts
   fread(&x, 1, 1, original);
   for(int i = 0; i < bits;) {
     ptr = &str_arr[x][0];
-    while(ptr) {
+    while(*ptr) {
       if (curr_bit_count == 8) {
         fwrite(&curr_byte, 1, 1, fp);
         curr_bit_count = 0;

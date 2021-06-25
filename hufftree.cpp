@@ -30,14 +30,11 @@ void HuffmanTree::populateTree(long long *numbers) {
    * */
   long long* p;
 
-  std::cout << "te pisi";
   std::vector <Node> ::iterator it = tree.begin();
   tptr = &(*it);
   int temp = 0;
-  std::cout << "peleme";
   for(p = numbers; p < numbers + 256; p++) {
     if (*p) {
-      std::cout << *p << " ";
       tptr->lptr = tptr->rptr = NULL;
       tptr->prob = *p;
       tptr->chtr = p - numbers;
@@ -70,13 +67,13 @@ void HuffmanTree::compress() {
     Node* min1 = &(*it), *min2 = &(*it) + 1, *current = &(*it) + count, *notleaf = &(*it) + count, *isleaf = &(*it) + 2;
     for(int i = 0; i < count - 1; i++) {
       
-      std::cout << "#";
       current->prob = min1->prob + min2->prob;
       current->lptr = min1;
       current->rptr = min2;
       min1->bit = "1";
-      min2->bit = "0";  
-      std::cout << "*";
+      min2->bit = "0";
+      current++;
+
       if (isleaf >= &(*it) + count) {
         /*
          * If isleaf passes tree + count, then min1 needs to be an internal node.
@@ -119,7 +116,6 @@ void HuffmanTree::compress() {
 
     }
 
-    std::cout << "coaie";
 
     /*
      * Encoding the tree.
@@ -131,12 +127,11 @@ void HuffmanTree::compress() {
       if(temp->lptr) {
         temp->lptr->bit = temp->bit + temp->lptr->bit;
       }
-      else {
+      if (temp->rptr) {
         temp->rptr->bit = temp->bit + temp->rptr->bit;
       }
     }
 
-    std::cout << "pizda\n";
 
 }
 
